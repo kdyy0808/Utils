@@ -1,19 +1,27 @@
+# from PIL import ImageGrab
+# from functools import partial
+# ImageGrab.grab = partial(ImageGrab.grab, all_screens=True)
+
 import pyautogui as pgi
 import time
 import keyboard
 import pydirectinput as pyd
 import random
 
+
+
 width, height = pgi.size()
 print('해상도 :', width, height)
 print("시작은 F3")
+print("F2: mini_mod 시작")
+
 
 def skey():
     pyd.keyDown("s")
     time.sleep(0.05)
     pyd.keyUp("s")
     
-    
+    #
 def imgclick(files):
     imgfile = pgi.locateCenterOnScreen(files, confidence = 0.8)
     if imgfile == None:
@@ -58,8 +66,14 @@ def esckeypress(files):
         pyd.keyUp("esc")
         
 end_flag = False
+mini_flag = False
 while not end_flag:
+    if keyboard.is_pressed('F2'):
+        mini_flag = True
+        
     if keyboard.is_pressed('F3'):
+        if mini_flag == True:
+            print("mini mode")
         print('작업시작')
         
         
@@ -70,7 +84,22 @@ while not end_flag:
                 break
             
             else:
-                if width == 2500:
+                if mini_flag == True:
+                    # skeypress('fhds.png')
+                    imgclick('mini_fhd2.png')
+                    imgclick('mini_fhd3.png')
+                    imgclick('mini_fhd4.png')
+                    imgclick('mini_fhd5.png')
+                    imgclick('mini_fhd6.png')
+                    # imgclick('fhd7.png')
+                    esckeypress('mini_esc.png')
+                    skeypress('mini_sskip.png')
+                    skeypress('mini_ssskip.png')
+                    
+                    # skeypress('23.png')
+                    # skeypress('fhdskip2.png')
+                    
+                elif width == 2500:
                     skeypress('ss.png')
                     imgclick('s2.png')
                     imgclick('s3.png')
